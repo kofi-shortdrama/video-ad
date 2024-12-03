@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KO-FI Short Drama</title>
+
+  <!-- Step 1: Embed the Ad Script here -->
+  <script src='//niphaumeenses.net/vignette.min.js' data-zone='8591336' data-sdk='show_8591336'></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+    #ad-popup {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #ad-popup .ad-content {
+      background-color: #fff;
+      color: black;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    #ad-popup button {
+      background-color: #ff6600;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+    #ad-popup button:hover {
+      background-color: #e65c00;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ad Popup -->
+  <div id="ad-popup">
+    <div class="ad-content">
+      <h2>Watching ad...</h2>
+      <p>The ad will end soon. You can watch for free after the ad finishes!</p>
+    </div>
+  </div>
+
+  <!-- Link to the cloud storage after ad -->
+  <div id="content" class="content" style="display:none;">
+    <p>Ad viewing completed</p>
+    <button class="button" id="watch-btn">Watch Now</button>
+  </div>
+
+  <script>
+    // Get URL parameter (get dramaId)
+    const urlParams = new URLSearchParams(window.location.search);
+    const dramaId = urlParams.get('dramaId');
+
+    // Drama data with 10 short dramas
+    const dramas = {
+      "A075": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A075 cloud storage link
+      },
+      "A076": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A076 cloud storage link
+      },
+      "A077": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A077 cloud storage link
+      },
+      "A078": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A078 cloud storage link
+      },
+      "A079": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A079 cloud storage link
+      },
+      "A080": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A080 cloud storage link
+      },
+      "A081": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A081 cloud storage link
+      },
+      "A082": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A082 cloud storage link
+      },
+      "A083": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A083 cloud storage link
+      },
+      "A084": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A084 cloud storage link
+      },
+      "A085": {
+        link: "https://ko-fi.com/shortdrama"  // Drama A085 cloud storage link
+      }
+      // You can continue to add more dramas if needed
+    };
+
+    // Load the corresponding cloud storage link based on dramaId
+    if (dramaId && dramas[dramaId]) {
+      const drama = dramas[dramaId];
+      
+      // Call the ad display function
+      show_8591336().then(() => {
+        // After ad finishes, display the cloud storage link button
+        document.getElementById('ad-popup').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+        
+        // Set button click event to jump to the cloud storage link
+        document.getElementById('watch-btn').onclick = () => window.location.href = drama.link;
+      }).catch(err => {
+        console.log("Ad failed to display", err);
+      });
+    }
+  </script>
+
+</body>
+</html>
